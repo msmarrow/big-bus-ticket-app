@@ -23,16 +23,11 @@ def route_capacity_check(route_and_date_pair, number_of_tickets, route_ledger, t
     Buy.complete_ticket_purchase(route_and_date_pair, number_of_tickets, ticket_records)
     return route_ledger
 
-
-'''
-
-for i in range(num_tix):
-    tick = Ticket(cal,route,tix_id,price)
-    tix.append(tick)
-    tix_id += 1
-
-'''
-
+def update_bus_capacity(ledger_entry, route_ledger):
+    for route in route_ledger:
+        if ledger_entry == route[0]:
+            route[1] -= 1
+    return route_ledger
 
 def get_max_capacity(route):
     if route.lower() == "blue":

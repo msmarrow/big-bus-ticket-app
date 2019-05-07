@@ -4,6 +4,7 @@
 # and functions that validate ticket data
 import date_class as DC
 import ticket as Tix
+import routes as Rts
 
 class Ticket():
     def __init__(self,date,route,id,price):
@@ -33,6 +34,23 @@ def create_ticket(date, route, number_of_tickets, ticket_records):
 
 def update_ticket_records(ticket, ticket_records):
     ticket_records.append(ticket)
+
+def remove_ticket_from_records(ticket_id, ticket_records, route_ledger):
+    count = 0
+    for ticket in ticket_records:
+        if ticket_id == ticket.id:
+            count += 1
+            ticket_route = ticket.route
+            ticket_date = ticket.date
+            ticket_records.remove(ticket)
+            print("Refund Successful. Type `help` or `?` to return to main menu.\n")
+
+    ledger_entry = [ticket_route,ticket_date]
+    Rts.update_bus_capacity(ledger_entry, route_ledger)
+
+    if count == 0:
+        print("ID Not Found. Type `help` or `?` to return to main menu.\n")
+    return ticket_records
 
 def check_for_discount(number_of_tickets):
     if number_of_tickets == 4:

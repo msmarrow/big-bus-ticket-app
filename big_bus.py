@@ -8,8 +8,8 @@ import routes as Rts
 import date_class as DC
 from datetime import date, datetime
 
-busdata = []
-tix = []
+bus_data = []
+tickets_purchased = []
 
 class Shell(cmd.Cmd):
     intro = "\nWelcome to Big Bus!\nType `help` or `?` to view options.\n"
@@ -32,12 +32,15 @@ class Shell(cmd.Cmd):
         calendar_entry = DC.format_date(month,date)
 
         route_and_date_pair = [bus_route.lower(),calendar_entry]
-        Rts.route_capacity_check(route_and_date_pair, number_of_tickets, busdata, tix)
+        Rts.route_capacity_check(route_and_date_pair, number_of_tickets, bus_data, tickets_purchased)
 
         print("Type `help` or `?` to return to main menu.\n")
 
     def do_refund_ticket(self, args):
-        id = input("Enter ID of ticket you would like to refund: ")
+        ticket_id = Rfnd.get_ticket_id()
+        Rfnd.issue_refund(ticket_id, bus_data, tickets_purchased)
+
+
         count = 0
         for i in tix:
             if int(id) == i.id:
