@@ -2,6 +2,7 @@
 # Author: Mahjeed Marrow
 # Description: class representing ticket object
 # and functions that validate ticket data
+
 import date_class as DC
 import ticket as Tix
 import routes as Rts
@@ -79,3 +80,16 @@ def get_ticket_prices(date, number_of_tickets):
 def get_ticket_id():
     ticket_id = input("Enter ID of ticket you would like to refund: ")
     return util.safe_int_conversion(ticket_id)
+
+def get_ticket_count():
+    ticket_input = input("Number of Tickets (1-4): ")
+    try:
+        ticket_count = util.safe_int_conversion(ticket_input)
+    except ValueError:
+        print("Invalid input.\n")
+
+    if Tix.is_valid_number_of_tickets(ticket_count):
+        return ticket_count
+    else:
+        print("Sorry, maximum ticket purchase is 4!\n")
+        util._restartOrder()

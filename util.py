@@ -1,3 +1,7 @@
+# File: util.py
+# Author: Mahjeed Marrow
+# Description: provides some utility functions
+
 import big_bus as BB
 
 def _restartOrder():

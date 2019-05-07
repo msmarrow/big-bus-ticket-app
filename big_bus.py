@@ -1,4 +1,6 @@
-# File: big_bus.py
+# File: routes.py
+# Author: Mahjeed Marrow
+# Description: main application driver
 
 import cmd
 import buy_action as Buy
@@ -26,9 +28,9 @@ class Shell(cmd.Cmd):
         HI_PRICE = 15
 
         bus_route = routes.get_bus_route()
-        month = Buy.get_month()
-        date = Buy.get_date(month)
-        number_of_tickets = Buy.get_ticket_count()
+        month = date_class.get_month()
+        date = date_class.get_date(month)
+        number_of_tickets = Tix.get_ticket_count()
         calendar_entry = date_class.format_date(month,date)
 
         route_and_date_pair = [bus_route.lower(),calendar_entry]
