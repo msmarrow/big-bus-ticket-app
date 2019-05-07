@@ -2,6 +2,7 @@ import unittest
 import cmd
 import big_bus as BB
 import buy_action as Buy
+import date_class as DC
 from datetime import date, datetime
 
 
@@ -29,18 +30,23 @@ class BigBusTest(unittest.TestCase):
         input_month_may = "5"
         input_month_june = "6"
 
-        self.assertEqual(Buy._is_valid_month(input_month_august), False)
-        self.assertEqual(Buy._is_valid_month(input_month_may), True)
-        self.assertEqual(Buy._is_valid_month(input_month_june), True)
+        self.assertEqual(DC._is_valid_month(input_month_august), False)
+        self.assertEqual(DC._is_valid_month(input_month_may), True)
+        self.assertEqual(DC._is_valid_month(input_month_june), True)
 
     def test_did_input_valid_date(self):
         '''TO DO: also need to update test cases periodically'''
-        todays_date = date.today().day
-        input_invalid = "string"
-        input_valid = "5"
+        this_month = date.today().month
+        good_input = "7"
+        bad_input_over_10_days = "30"
+        bad_input_in_the_past = "2"
 
-        self.assertEqual(Buy._is_valid_date(input_month_invalid), False)
-        self.assertEqual(Buy._is_valid_date(input_month_valid), True)
+        self.assertEqual(DC._is_valid_date(bad_input_over_10_days, this_month), False)
+        self.assertEqual(DC._is_valid_date(bad_input_in_the_past, this_month), False)
+        self.assertEqual(DC._is_valid_date(good_input, this_month), True)
+
+
+
 
 
 

@@ -30,18 +30,3 @@ def _get_month():
     else:
         print("Please enter a valid month\n")
         util._restartOrder()
-
-def _is_valid_month(month_request):
-    requested_month = util.safe_int_conversion(month_request)
-    current_month = date.today().month
-    if current_month == 12:
-        next_month = 1
-    else:
-        next_month = current_month + 1
-
-    if requested_month == current_month:
-        return True
-    elif requested_month == next_month:
-        return True
-    else:
-        return False
