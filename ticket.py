@@ -21,3 +21,17 @@ def is_valid_number_of_tickets(ticket_order_number):
         return True
     else:
         return False
+
+def check_for_discount(month, dat, year=2019):
+    pass
+
+'''
+    try:
+        weekday = date(year,int(month),int(dat)).weekday()
+        if weekday > 3:
+            return "high"
+        else:
+            return "low"
+    except ValueError:
+        print("Invalid Date Given")
+'''

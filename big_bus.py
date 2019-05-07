@@ -9,26 +9,6 @@ from datetime import date, datetime
 busdata = []
 tix = []
 
-#get seating capacity
-def max_cap(route):
-    if route.lower() == "blue":
-        return 3
-    elif route.lower() == "green":
-        return 4*89
-    elif route.lower() == "red":
-        return 5*89
-
-#check for discount
-def day_chk(month, dat, year=2019):
-    try:
-        weekday = date(year,int(month),int(dat)).weekday()
-        if weekday > 3:
-            return "high"
-        else:
-            return "low"
-    except ValueError:
-        print("Invalid Date Given")
-
 class Shell(cmd.Cmd):
     intro = "\nWelcome to Big Bus!\nType `help` or `?` to view options.\n"
     prompt = '> '
@@ -52,7 +32,7 @@ class Shell(cmd.Cmd):
 
         route_and_date_pair = [route.lower(),calendar_entry]
 
-        #is_there_route_capacity(route_and_date_pair,)
+        #route_capacity_check(route_and_date_pair,number_of_tickets,busdata)
 
         for i in busdata:
             if i[0] == route_and_date_pair:

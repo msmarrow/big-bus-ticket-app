@@ -55,13 +55,13 @@ class BigBusTest(unittest.TestCase):
         self.assertEqual(DC.format_date(month,date,year),"05-01-2019")
 
     def test_route_capacity_check(self):
-        route_date_pair = ["red","05-07-2019"]
+        route_date_pair = ["blue","05-07-2019"]
         number_of_tickets = 1
-        full_route = [[["red","05-07-2019"],[89]]]
-        available_route = [[["red","05-07-2019"],[88]]]
+        full_route = [[["blue","05-07-2019"],178]]
+        available_route = [[["blue","05-07-2019"],177]]
 
-        self.assertEqual(Rts.is_there_route_capacity(route_date_pair,number_of_tickets,full_route),False)
-        self.assertEqual(Rts.is_there_route_capacity(route_date_pair,number_of_tickets,available_route),True)
+        self.assertEqual(Rts.route_capacity_check(route_date_pair,number_of_tickets,full_route),"No Capacity")
+        self.assertEqual(Rts.route_capacity_check(route_date_pair,number_of_tickets,available_route),[[["blue","05-07-2019"],178]])
 
 
 
