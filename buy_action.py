@@ -50,4 +50,9 @@ def get_ticket_count():
         util._restartOrder()
 
 def complete_ticket_purchase(route_and_date_pair, number_of_tickets, ticket_records):
-    pass
+    date =  route_and_date_pair[1]
+    route = route_and_date_pair[0]
+
+    tix.create_ticket(date, route, number_of_tickets, ticket_records)
+    tix.update_ticket_records(number_of_tickets, ticket_records)
+    return ticket_records

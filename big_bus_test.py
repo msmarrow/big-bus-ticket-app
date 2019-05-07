@@ -64,7 +64,14 @@ class BigBusTest(unittest.TestCase):
         self.assertEqual(Rts.route_capacity_check(route_date_pair,number_of_tickets,available_route, []),[[["blue","05-07-2019"],178]])
 
     def test_create_ticket(self):
-        pass
+        date = "05-07-2019"
+        route = "green"
+        number_of_tickets = 1
+        ticket_records = []
+
+        self.assertEqual(Tix.create_ticket(date, route, number_of_tickets, ticket_records), ["TICKET ID: {}, DATE: {}, ROUTE: {}, PRICE: ${}\n".format(1, date, route, 10)])
+
+
 
 
 

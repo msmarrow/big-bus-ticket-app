@@ -20,7 +20,7 @@ def is_valid_number_of_tickets(ticket_order_number):
     else:
         return False
 
-def create_ticket(date, route, ticket_records):
+def create_ticket(date, route, number_of_tickets, ticket_records):
     pass
 
 def update_ticket_records(number_of_tickets, ticket_records):
