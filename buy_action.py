@@ -22,3 +22,13 @@ def _is_valid_route(route_request):
         return True
     else:
         return False
+
+def _is_valid_month(month_request):
+    month_as_integer = int(month_request)
+    this_month = date.today().month
+    if month_as_integer == this_month:
+        return True
+    elif month_as_integer - 1 == this_month:
+        return True
+    else:
+        return False
