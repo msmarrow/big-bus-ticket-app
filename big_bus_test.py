@@ -84,5 +84,4 @@ class BigBusTest(unittest.TestCase):
 
         self.assertEqual(Tix.create_ticket(date, route, number_of_tickets, ticket_records), ['TICKET ID: {}, DATE: {}, ROUTE: {}, PRICE: ${}'.format(1, date, route, 10)])
 '''
-
 unittest.main()
