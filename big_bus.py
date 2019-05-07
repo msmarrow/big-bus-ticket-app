@@ -3,6 +3,7 @@
 import cmd
 import buy_action as Buy
 import ticket as Tix
+import routes as Rts
 from datetime import date, datetime
 
 busdata = []
@@ -49,11 +50,12 @@ class Shell(cmd.Cmd):
         number_of_tickets = Buy.get_ticket_count()
         calendar_entry = DC.format_date(month,date)
 
+        route_and_date_pair = [route.lower(),calendar_entry]
 
-        route_and_date_pair = [route.lower(),cal]
+        #is_there_route_capacity(route_and_date_pair,)
 
         for i in busdata:
-            if i[0] == combo:
+            if i[0] == route_and_date_pair:
                 count +=1
                 #can't sell tickets if route is at capacity for the day
                 if i[1] + num_tix > max_cap(route):

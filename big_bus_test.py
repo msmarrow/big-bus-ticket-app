@@ -4,6 +4,7 @@ import big_bus as BB
 import buy_action as Buy
 import date_class as DC
 import ticket as Tix
+import routes as Rts
 from datetime import date, datetime
 
 
@@ -52,6 +53,15 @@ class BigBusTest(unittest.TestCase):
         year = 2019
 
         self.assertEqual(DC.format_date(month,date,year),"05-01-2019")
+
+    def test_route_capacity_check(self):
+        route_date_pair = ["red","05-07-2019"]
+        number_of_tickets = 1
+        full_route = [[["red","05-07-2019"],[89]]]
+        available_route = [[["red","05-07-2019"],[88]]]
+
+        self.assertEqual(Rts.is_there_route_capacity(route_date_pair,number_of_tickets,full_route),False)
+        self.assertEqual(Rts.is_there_route_capacity(route_date_pair,number_of_tickets,available_route),True)
 
 
 
