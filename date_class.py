@@ -43,8 +43,22 @@ def is_valid_date(date_request, month, year=2019):
 def format_date(month, date, year=2019):
     if len(month) == 1:
         month = "0" + month
-
     if len(date) == 1:
         date = "0" + date
+    return "{}-{}-2019".format(month, date)
 
-    return "{}-{}-2019".format(month,date)
+#takes date in MM-DD-YYYY and returns
+#list of [MM,DD,YYYY]
+def parse_date_string(datestring):
+    date_list = datestring.split("-")
+    for component in date_list:
+        if component[0] == "0":
+            component = component[1]
+    return date_list
+
+def is_high_price_day(month, the_date, year=2019):
+    day_of_the_week = date(year, int(month), int(the_date)).weekday()
+    if day_of_the_week > 3:
+        return True
+    else:
+        return False

@@ -17,7 +17,7 @@ class Shell(cmd.Cmd):
     def do_quit(self, arg):
         return True
 
-    def do_buy(self, args):
+    def do_buy_ticket(self, args):
         print("Note: Tickets may only be purchased up to 10 days in advance.\n")
         LO_PRICE = 10
         HI_PRICE = 15
@@ -32,61 +32,9 @@ class Shell(cmd.Cmd):
         route_and_date_pair = [route.lower(),calendar_entry]
         route_capacity_check(route_and_date_pair, number_of_tickets, busdata, tix)
 
-        for i in busdata:
-            if i[0] == route_and_date_pair:
-                count +=1
-                #can't sell tickets if route is at capacity for the day
-                if i[1] + num_tix > max_cap(route):
-                    print("Sorry, not enough seats available on {} for the {} route\n".format(combo[1],route.title()))
-                    print("Type `help` or `?` to return to main menu.\n")
-                #otherwise, the sale is successful
-                else:
-                    i[1] += num_tix
+        print("Type `help` or `?` to return to main menu.\n")
 
-                    #apply discount if 4 tickets are purchased
-                    if num_tix == 4:
-                        if day_chk(month, date) == "low":
-                            price = LO_PRICE*.9
-                        else:
-                            price = HI_PRICE*.9
-                    else:
-                        if day_chk(month,date) == "low":
-                            price = LO_PRICE
-                        else:
-                            price = HI_PRICE
-
-                    for i in range(num_tix):
-                        tick = Ticket(cal,route,tix_id,price)
-                        tix.append(tick)
-                        tix_id += 1
-
-                    print(tix)
-                    #prompt user to return to main menu
-                    print("Type `help` or `?` to return to main menu.\n")
-
-        if count == 0:
-            busdata.append([combo,num_tix])
-            if num_tix == 4:
-                if day_chk(month, date) == "low":
-                    price = LO_PRICE*.9
-                else:
-                    price = HI_PRICE*.9
-            else:
-                if day_chk(month,date) == "low":
-                    price = LO_PRICE
-                else:
-                    price = HI_PRICE
-
-            for i in range(num_tix):
-                tick = Ticket(cal,route,tix_id,price)
-                tix.append(tick)
-                tix_id += 1
-
-            print("Type `help` or `?` to return to main menu.\n")
-        else:
-            print("Type `help` or `?` to return to main menu.\n")
-
-    def do_refund(self, args):
+    def do_refund_ticket(self, args):
         id = input("Enter ID of ticket you would like to refund: ")
         count = 0
         for i in tix:
@@ -100,7 +48,7 @@ class Shell(cmd.Cmd):
             print("ID Not Found. Type `help` or `?` to return to main menu.\n")
 
     #bus report
-    def do_busRprt(self, args):
+    def do_bus_report(self, args):
         count = 0
         today = datetime.today().strftime('%m-%d-%Y')
         route = input("Enter Route you would like a report on (Red, Green, Blue): ")
@@ -115,7 +63,7 @@ class Shell(cmd.Cmd):
         print("Type `help` or `?` to return to main menu.\n")
 
     #ticket report
-    def do_tixRprt(self, args):
+    def do_ticket_report(self, args):
         count = 0
         month = input("Select a month (1-12): ")
         date  = input("Select a date (1-31): ")

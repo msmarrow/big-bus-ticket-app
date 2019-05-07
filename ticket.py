@@ -2,6 +2,8 @@
 # Author: Mahjeed Marrow
 # Description: class representing ticket object
 # and functions that validate ticket data
+import date_class as DC
+import ticket as Tix
 
 class Ticket():
     def __init__(self,date,route,id,price):
@@ -11,7 +13,7 @@ class Ticket():
         self.price = price
 
     def __repr__(self):
-        return "TICKET ID: {}, DATE: {}, ROUTE: {}, PRICE: ${}\n".format(self.id,self.date,self.route,self.price)
+        return "TICKET ID: {}, DATE: {}, ROUTE: {}, PRICE: ${}".format(self.id,self.date,self.route,self.price)
 
 #------------------------
 def is_valid_number_of_tickets(ticket_order_number):
@@ -21,38 +23,36 @@ def is_valid_number_of_tickets(ticket_order_number):
         return False
 
 def create_ticket(date, route, number_of_tickets, ticket_records):
-    pass
+    ticket_prices = get_ticket_prices(date, number_of_tickets)
+    ticket_id = len(ticket_records) + 1
+    for i in range(number_of_tickets):
+        new_ticket= Ticket(date, route, ticket_id, ticket_prices)
+        Tix.update_ticket_records(new_ticket, ticket_records)
+        ticket_id += 1
+    return ticket_records
 
-def update_ticket_records(number_of_tickets, ticket_records):
-    pass
+def update_ticket_records(ticket, ticket_records):
+    ticket_records.append(ticket)
 
-def check_for_discount(month, dat, year=2019):
-    pass
-    '''
-    if num_tix == 4:
-        if day_chk(month, date) == "low":
-            price = LO_PRICE*.9
-        else:
-            price = HI_PRICE*.9
+def check_for_discount(number_of_tickets):
+    if number_of_tickets == 4:
+        return True
     else:
-        if day_chk(month,date) == "low":
-            price = LO_PRICE
-        else:
-            price = HI_PRICE
-'''
+        return False
 
-def get_ticket_prices(number_of_tickets):
+def get_ticket_prices(date, number_of_tickets):
     LOW_PRICE  = 10
     HIGH_PRICE = 15
+    ticket_month = DC.parse_date_string(date)[0]
+    ticket_date = DC.parse_date_string(date)[1]
 
-
-'''
-    try:
-        weekday = date(year,int(month),int(dat)).weekday()
-        if weekday > 3:
-            return "high"
+    if check_for_discount(number_of_tickets):
+        if DC.is_high_price_day(ticket_month, ticket_date):
+            return HIGH_PRICE * 0.9
         else:
-            return "low"
-    except ValueError:
-        print("Invalid Date Given")
-'''
+            return LOW_PRICE * 0.9
+    else:
+        if DC.is_high_price_day(ticket_month, ticket_date):
+            return HIGH_PRICE
+        else:
+            return LOW_PRICE
