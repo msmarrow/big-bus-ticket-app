@@ -46,19 +46,6 @@ class Shell(cmd.Cmd):
 
     def do_ticket_report(self, args):
         reports.get_ticket_report(bus_data)
-
-        if len(month) == 1:
-            month = "0" + month
-
-        if len(date) == 1:
-            date = "0" + date
-
-        cal = "{}-{}-2019".format(month,date)
-
-        for i in busdata:
-            d2 = i[0][1]
-            if d2 == cal:
-                count += i[1]
         print("Type `help` or `?` to return to main menu.\n")
 
 if __name__ == '__main__':
