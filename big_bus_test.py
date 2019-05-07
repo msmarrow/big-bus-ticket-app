@@ -33,6 +33,16 @@ class BigBusTest(unittest.TestCase):
         self.assertEqual(Buy._is_valid_month(input_month_may), True)
         self.assertEqual(Buy._is_valid_month(input_month_june), True)
 
+    def test_did_input_valid_date(self):
+        '''TO DO: also need to update test cases periodically'''
+        todays_date = date.today().day
+        input_invalid = "string"
+        input_valid = "5"
+
+        self.assertEqual(Buy._is_valid_date(input_month_invalid), False)
+        self.assertEqual(Buy._is_valid_date(input_month_valid), True)
+
+
 
 
 
