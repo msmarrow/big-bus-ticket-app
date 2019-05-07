@@ -2,6 +2,7 @@
 
 import cmd
 import buy_action as Buy
+import ticket as Tix
 from datetime import date, datetime
 
 busdata = []
@@ -36,27 +37,18 @@ class Shell(cmd.Cmd):
         return True
 
     def do_buy(self, args):
-        #ticket price
+        print("Note: Tickets may only be purchased up to 10 days in advance.\n")
         LO_PRICE = 10
         HI_PRICE = 15
-
-        #unique id
         tix_id = len(tix) + 1
-
-        #counter
         count = 0
 
-        print("Tickets may only be purchased up to 10 days in advance.\n")
+        bus_route = Buy.get_bus_route()
+        month = Buy.get_month()
+        date = Buy.get_date(month)
+        number_of_tickets = Buy.get_ticket_count()
 
-        bus_route = Buy._get_bus_route()
-        month = Buy._get_month()
-
-        date  = input("Select a date (1-31): ")
-        num_tix = int(input("How many tickets would you like (1-4): "))
-
-        if not _is_valid_number_of_tickets(num_tix):
-            print("Sorry, maximum ticket purchase is 4!\n")
-            Shell().cmdloop()
+        #formatted_date = DC.format_date()
 
         #formatted date
         if len(month) == 1:

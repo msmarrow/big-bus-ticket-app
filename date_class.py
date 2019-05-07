@@ -18,7 +18,7 @@ class Date():
 # -------------------------------
 # Begin Date validation functions
 # -------------------------------
-def _is_valid_month(month_request):
+def is_valid_month(month_request):
     requested_month = util.safe_int_conversion(month_request)
     current_month = date.today().month
     if current_month == 12:
@@ -33,21 +33,22 @@ def _is_valid_month(month_request):
     else:
         return False
 
-def _is_valid_date(date_request, month, year=2019):
+def is_valid_date(date_request, month, year=2019):
     input_date = util.safe_int_conversion(date_request)
+    input_month = util.safe_int_conversion(month)
     todays_date = date(year, date.today().month, date.today().day)
 
     try:
-        requested_date = date(year, month, input_date)
+        requested_date = date(year, input_month, input_date)
     except ValueError:
-        print("Invalid Date Given.\n")
         return False
-        #util._restartOrder()
 
     timespan_between_dates = requested_date - todays_date
     if timespan_between_dates.days > 10:
+        print("Tickets may only be purchased up to 10 days in advance.\n")
         return False
     elif timespan_between_dates.days < 0:
+        print("Tour has already occured.\n")
         return False
     else:
         return True

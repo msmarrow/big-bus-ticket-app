@@ -3,14 +3,15 @@ import cmd
 import big_bus as BB
 import buy_action as Buy
 import date_class as DC
+import ticket as Tix
 from datetime import date, datetime
 
 
 class BigBusTest(unittest.TestCase):
     '''unit testing for big bus ticket purchase software'''
     def test_bought_valid_number_of_tickets(self):
-        self.assertEqual(Buy._is_valid_number_of_tickets(5), False)
-        self.assertEqual(Buy._is_valid_number_of_tickets(4), True)
+        self.assertEqual(Tix.is_valid_number_of_tickets(5), False)
+        self.assertEqual(Tix.is_valid_number_of_tickets(4), True)
 
     def test_did_input_valid_route(self):
         blue_string = "blue"
@@ -18,10 +19,10 @@ class BigBusTest(unittest.TestCase):
         green_string = "greEn"
         purple_string = "purple"
 
-        self.assertEqual(Buy._is_valid_route(blue_string), True)
-        self.assertEqual(Buy._is_valid_route(red_string), True)
-        self.assertEqual(Buy._is_valid_route(green_string), True)
-        self.assertEqual(Buy._is_valid_route(purple_string), False)
+        self.assertEqual(Buy.is_valid_route(blue_string), True)
+        self.assertEqual(Buy.is_valid_route(red_string), True)
+        self.assertEqual(Buy.is_valid_route(green_string), True)
+        self.assertEqual(Buy.is_valid_route(purple_string), False)
 
     def test_did_input_valid_month(self):
         '''TO DO: need to update test cases periodically'''
@@ -30,9 +31,9 @@ class BigBusTest(unittest.TestCase):
         input_month_may = "5"
         input_month_june = "6"
 
-        self.assertEqual(DC._is_valid_month(input_month_august), False)
-        self.assertEqual(DC._is_valid_month(input_month_may), True)
-        self.assertEqual(DC._is_valid_month(input_month_june), True)
+        self.assertEqual(DC.is_valid_month(input_month_august), False)
+        self.assertEqual(DC.is_valid_month(input_month_may), True)
+        self.assertEqual(DC.is_valid_month(input_month_june), True)
 
     def test_did_input_valid_date(self):
         '''TO DO: also need to update test cases periodically'''
@@ -41,9 +42,9 @@ class BigBusTest(unittest.TestCase):
         bad_input_over_10_days = "30"
         bad_input_in_the_past = "2"
 
-        self.assertEqual(DC._is_valid_date(bad_input_over_10_days, this_month), False)
-        self.assertEqual(DC._is_valid_date(bad_input_in_the_past, this_month), False)
-        self.assertEqual(DC._is_valid_date(good_input, this_month), True)
+        self.assertEqual(DC.is_valid_date(bad_input_over_10_days, this_month), False)
+        self.assertEqual(DC.is_valid_date(bad_input_in_the_past, this_month), False)
+        self.assertEqual(DC.is_valid_date(good_input, this_month), True)
 
 
 
