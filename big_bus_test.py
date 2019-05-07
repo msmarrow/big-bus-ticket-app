@@ -46,9 +46,12 @@ class BigBusTest(unittest.TestCase):
         self.assertEqual(DC.is_valid_date(bad_input_in_the_past, this_month), False)
         self.assertEqual(DC.is_valid_date(good_input, this_month), True)
 
+    def test_date_formatting(self):
+        month = "5"
+        date = "1"
+        year = 2019
 
-
-
+        self.assertEqual(DC.format_date(month,date,year),"05-01-2019")
 
 
 
