@@ -60,8 +60,11 @@ class BigBusTest(unittest.TestCase):
         full_route = [[["blue","05-07-2019"],178]]
         available_route = [[["blue","05-07-2019"],177]]
 
-        self.assertEqual(Rts.route_capacity_check(route_date_pair,number_of_tickets,full_route),"No Capacity")
-        self.assertEqual(Rts.route_capacity_check(route_date_pair,number_of_tickets,available_route),[[["blue","05-07-2019"],178]])
+        self.assertEqual(Rts.route_capacity_check(route_date_pair,number_of_tickets,full_route, []),"No Capacity")
+        self.assertEqual(Rts.route_capacity_check(route_date_pair,number_of_tickets,available_route, []),[[["blue","05-07-2019"],178]])
+
+    def test_create_ticket(self):
+        pass
 
 
 

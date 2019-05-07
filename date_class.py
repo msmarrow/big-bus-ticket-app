@@ -5,7 +5,6 @@
 from datetime import date, datetime
 import util
 
-
 def is_valid_month(month_request):
     requested_month = util.safe_int_conversion(month_request)
     current_month = date.today().month

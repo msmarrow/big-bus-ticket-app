@@ -2,6 +2,7 @@ import util
 from datetime import date, datetime
 import date_class as DC
 import ticket as Tix
+import buy_action as Buy
 
 def get_bus_route():
     route = input("Select a route: Red, Green, or Blue: ")
@@ -47,3 +48,6 @@ def get_ticket_count():
     else:
         print("Sorry, maximum ticket purchase is 4!\n")
         util._restartOrder()
+
+def complete_ticket_purchase(route_and_date_pair, number_of_tickets, ticket_records):
+    pass

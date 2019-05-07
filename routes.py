@@ -1,36 +1,35 @@
+# File: routes.py
+# Author: Mahjeed Marrow
+# Description: checks bus route
+# capacity and updates bus record-keeping
+import ticket as tix
 
-
-def route_capacity_check(request, number_of_tickets, ledger):
+def route_capacity_check(route_and_date_pair, number_of_tickets, route_ledger, ticket_records):
     count = 0
-    for i in ledger:
-        if i[0] == request:
+    for i in route_ledger:
+        if i[0] == route_and_date_pair:
             count +=1
-            #can't sell tickets if route is at capacity for the day
             if i[1] + number_of_tickets > get_max_capacity(i[0][0]):
                 print("Type `help` or `?` to return to main menu.\n")
                 return "No Capacity"
             #otherwise, the sale is successful
             else:
                 i[1] += number_of_tickets
-                return ledger
-'''
-                if count == 0:
-                    busdata.append([combo,num_tix])
-                    if num_tix == 4:
-                        if day_chk(month, date) == "low":
-                            price = LO_PRICE*.9
-                        else:
-                            price = HI_PRICE*.9
-                    else:
-                        if day_chk(month,date) == "low":
-                            price = LO_PRICE
-                        else:
-                            price = HI_PRICE
 
-                    for i in range(num_tix):
-                        tick = Ticket(cal,route,tix_id,price)
-                        tix.append(tick)
-                        tix_id += 1
+    if count == 0:
+        route_ledger.append([route_and_date_pair,number_of_tickets])
+
+    Buy.complete_ticket_purchase(route_and_date_pair, number_of_tickets, ticket_records)
+    return route_ledger
+
+
+'''
+
+for i in range(num_tix):
+    tick = Ticket(cal,route,tix_id,price)
+    tix.append(tick)
+    tix_id += 1
+
 '''
 
 

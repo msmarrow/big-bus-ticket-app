@@ -21,7 +21,6 @@ class Shell(cmd.Cmd):
         print("Note: Tickets may only be purchased up to 10 days in advance.\n")
         LO_PRICE = 10
         HI_PRICE = 15
-        tix_id = len(tix) + 1
         count = 0
 
         bus_route = Buy.get_bus_route()
@@ -31,8 +30,7 @@ class Shell(cmd.Cmd):
         calendar_entry = DC.format_date(month,date)
 
         route_and_date_pair = [route.lower(),calendar_entry]
-
-        #route_capacity_check(route_and_date_pair,number_of_tickets,busdata)
+        route_capacity_check(route_and_date_pair, number_of_tickets, busdata, tix)
 
         for i in busdata:
             if i[0] == route_and_date_pair:
@@ -83,11 +81,6 @@ class Shell(cmd.Cmd):
                 tick = Ticket(cal,route,tix_id,price)
                 tix.append(tick)
                 tix_id += 1
-
-            #give user option to view all tickets sold to this point
-            view = input("Would you like to view all tickets sold? (Y or N): ")
-            if view.lower() == 'y':
-                print(tix)
 
             print("Type `help` or `?` to return to main menu.\n")
         else:
