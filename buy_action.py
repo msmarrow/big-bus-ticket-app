@@ -13,7 +13,7 @@ def _get_bus_route():
         return route
     else:
         print("Please enter a valid bus route.\n")
-        util.restartOrder()
+        util._restartOrder()
 
 def _is_valid_route(route_request):
     route_lower_case = route_request.lower()
@@ -23,12 +23,25 @@ def _is_valid_route(route_request):
     else:
         return False
 
+def _get_month():
+    month = input("Select a month (1-12): ")
+    if _is_valid_month(month):
+        return month
+    else:
+        print("Please enter a valid month\n")
+        util._restartOrder()
+
 def _is_valid_month(month_request):
-    month_as_integer = int(month_request)
-    this_month = date.today().month
-    if month_as_integer == this_month:
+    requested_month = util.safe_int_conversion(month_request)
+    current_month = date.today().month
+    if current_month == 12:
+        next_month = 1
+    else:
+        next_month = current_month + 1
+
+    if requested_month == current_month:
         return True
-    elif month_as_integer - 1 == this_month:
+    elif requested_month == next_month:
         return True
     else:
         return False

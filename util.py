@@ -7,5 +7,11 @@ def _restartOrder():
 # days in advanced
 def ten_day_error_message():
     print("Sorry, ... ")
-
     _restartOrder()
+
+def safe_int_conversion(input):
+    try:
+        return int(input)
+    except ValueError:
+        print("Invalid input: {}\n".format(input))
+        _restartOrder()

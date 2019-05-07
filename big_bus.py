@@ -4,6 +4,9 @@ import cmd
 import buy_action as Buy
 from datetime import date, datetime
 
+busdata = []
+tix = []
+
 #get seating capacity
 def max_cap(route):
     if route.lower() == "blue":
@@ -46,8 +49,8 @@ class Shell(cmd.Cmd):
         print("Tickets may only be purchased up to 10 days in advance.\n")
 
         bus_route = Buy._get_bus_route()
+        month = Buy._get_month()
 
-        month = input("Select a month (1-12): ")
         date  = input("Select a date (1-31): ")
         num_tix = int(input("How many tickets would you like (1-4): "))
 
@@ -175,18 +178,7 @@ class Shell(cmd.Cmd):
         print("\nTICKET REPORT: TICKETS SOLD FOR ALL ROUTES ON {}: {}\n".format(cal,count))
         print("Type `help` or `?` to return to main menu.\n")
 
-class Date():
-    def __init__(self,month,date,year):
-        self.month = month
-        self.date = date
-        self.year = year
-
-    def __repr__(self):
-        return (self.month, self.date, self.year)
-
 if __name__ == '__main__':
     #contains data
-    busdata = []
-    tix = []
 
     Shell().cmdloop()
