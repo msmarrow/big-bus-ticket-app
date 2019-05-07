@@ -2,6 +2,7 @@ import unittest
 import cmd
 import big_bus as BB
 import buy_action as Buy
+import refund_action as Rfnd
 import date_class as DC
 import ticket as Tix
 import routes as Rts
@@ -62,8 +63,20 @@ class BigBusTest(unittest.TestCase):
 
         self.assertEqual(Rts.route_capacity_check(route_date_pair,number_of_tickets,full_route, []),"No Capacity")
         self.assertEqual(Rts.route_capacity_check(route_date_pair,number_of_tickets,available_route, []),[[["blue","05-07-2019"],178]])
+
+    def test_issue_refund(self):
+        ticket_id = 1
+        date = "05-07-2019"
+        route = "blue"
+        price = 10
+        route_ledger = [[["blue","05-07-2019"],1]]
+        ticket_records = [Tix.Ticket(date, route, ticket_id, price)]
+
+        self.assertEqual(Rfnd.issue_refund(ticket_id, route_ledger, ticket_records), [])
+        self.assertEqual(route_ledger, [[["blue","05-07-2019"],0]])
+
 '''
-    
+
     def test_create_ticket(self):
         date = "05-07-2019"
         route = "green"
@@ -72,12 +85,5 @@ class BigBusTest(unittest.TestCase):
 
         self.assertEqual(Tix.create_ticket(date, route, number_of_tickets, ticket_records), ['TICKET ID: {}, DATE: {}, ROUTE: {}, PRICE: ${}'.format(1, date, route, 10)])
 '''
-
-
-
-
-
-
-
 
 unittest.main()
