@@ -4,6 +4,7 @@ import cmd
 import buy_action as Buy
 import ticket as Tix
 import routes as Rts
+import date_class as DC
 from datetime import date, datetime
 
 busdata = []
@@ -29,8 +30,8 @@ class Shell(cmd.Cmd):
         number_of_tickets = Buy.get_ticket_count()
         calendar_entry = DC.format_date(month,date)
 
-        route_and_date_pair = [route.lower(),calendar_entry]
-        route_capacity_check(route_and_date_pair, number_of_tickets, busdata, tix)
+        route_and_date_pair = [bus_route.lower(),calendar_entry]
+        Rts.route_capacity_check(route_and_date_pair, number_of_tickets, busdata, tix)
 
         print("Type `help` or `?` to return to main menu.\n")
 
