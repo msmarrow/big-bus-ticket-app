@@ -1,7 +1,7 @@
 # File: big_bus.py
 
 import cmd
-import buy_action as buy
+import buy_action as Buy
 from datetime import date, datetime
 
 #get seating capacity
@@ -45,13 +45,13 @@ class Shell(cmd.Cmd):
 
         print("Tickets may only be purchased up to 10 days in advance.\n")
 
-        #get user input
-        route = get_route()
+        bus_route = Buy._get_bus_route()
+
         month = input("Select a month (1-12): ")
         date  = input("Select a date (1-31): ")
         num_tix = int(input("How many tickets would you like (1-4): "))
 
-        if not is_valid_number_of_tickets(num_tix):
+        if not _is_valid_number_of_tickets(num_tix):
             print("Sorry, maximum ticket purchase is 4!\n")
             Shell().cmdloop()
 
