@@ -5,7 +5,7 @@ import buy_action as Buy
 import refund_action as Rfnd
 import date_class as DC
 import ticket as Tix
-import routes as Rts
+import routes
 from datetime import date, datetime
 
 
@@ -21,10 +21,10 @@ class BigBusTest(unittest.TestCase):
         green_string = "greEn"
         purple_string = "purple"
 
-        self.assertEqual(Buy.is_valid_route(blue_string), True)
-        self.assertEqual(Buy.is_valid_route(red_string), True)
-        self.assertEqual(Buy.is_valid_route(green_string), True)
-        self.assertEqual(Buy.is_valid_route(purple_string), False)
+        self.assertEqual(routes.is_valid_route(blue_string), True)
+        self.assertEqual(routes.is_valid_route(red_string), True)
+        self.assertEqual(routes.is_valid_route(green_string), True)
+        self.assertEqual(routes.is_valid_route(purple_string), False)
 
     def test_did_input_valid_month(self):
         '''TO DO: need to update test cases periodically'''
@@ -61,8 +61,8 @@ class BigBusTest(unittest.TestCase):
         full_route = [[["blue","05-07-2019"],178]]
         available_route = [[["blue","05-07-2019"],177]]
 
-        self.assertEqual(Rts.route_capacity_check(route_date_pair,number_of_tickets,full_route, []),"No Capacity")
-        self.assertEqual(Rts.route_capacity_check(route_date_pair,number_of_tickets,available_route, []),[[["blue","05-07-2019"],178]])
+        self.assertEqual(routes.route_capacity_check(route_date_pair,number_of_tickets,full_route, []),"No Capacity")
+        self.assertEqual(routes.route_capacity_check(route_date_pair,number_of_tickets,available_route, []),[[["blue","05-07-2019"],178]])
 
     def test_issue_refund(self):
         ticket_id = 1
@@ -76,7 +76,6 @@ class BigBusTest(unittest.TestCase):
         self.assertEqual(route_ledger, [[["blue","05-07-2019"],0]])
 
 '''
-
     def test_create_ticket(self):
         date = "05-07-2019"
         route = "green"

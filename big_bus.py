@@ -4,8 +4,9 @@ import cmd
 import buy_action as Buy
 import refund_action as Rfnd
 import ticket as Tix
-import routes as Rts
-import date_class as DC
+import routes
+import reports
+import date_class
 from datetime import date, datetime
 
 bus_data = []
@@ -24,14 +25,14 @@ class Shell(cmd.Cmd):
         LO_PRICE = 10
         HI_PRICE = 15
 
-        bus_route = Buy.get_bus_route()
+        bus_route = routes.get_bus_route()
         month = Buy.get_month()
         date = Buy.get_date(month)
         number_of_tickets = Buy.get_ticket_count()
-        calendar_entry = DC.format_date(month,date)
+        calendar_entry = date_class.format_date(month,date)
 
         route_and_date_pair = [bus_route.lower(),calendar_entry]
-        Rts.route_capacity_check(route_and_date_pair, number_of_tickets, bus_data, tickets_purchased)
+        routes.route_capacity_check(route_and_date_pair, number_of_tickets, bus_data, tickets_purchased)
 
         print("Type `help` or `?` to return to main menu.\n")
 
@@ -40,23 +41,11 @@ class Shell(cmd.Cmd):
         Rfnd.issue_refund(ticket_id, bus_data, tickets_purchased)
 
     def do_bus_report(self, args):
-        count = 0
-        today = datetime.today().strftime('%m-%d-%Y')
-        route = input("Enter Route you would like a report on (Red, Green, Blue): ")
-        for i in busdata:
-            r2 = i[0][0]
-            if route.lower() == r2:
-                date = i[0][1]
-                if date == today:
-                    count = i[1]
-        # print results
-        print("\nROUTE REPORT: TICKETS SOLD FOR {} ROUTE ON {}: {}\n".format(route.upper(),today,count))
+        reports.get_bus_report(bus_data)
         print("Type `help` or `?` to return to main menu.\n")
 
-    #ticket report
     def do_ticket_report(self, args):
-        month = input("Select a month (1-12): ")
-        date  = input("Select a date (1-31): ")
+        reports.get_ticket_report(bus_data)
 
         if len(month) == 1:
             month = "0" + month
@@ -70,9 +59,6 @@ class Shell(cmd.Cmd):
             d2 = i[0][1]
             if d2 == cal:
                 count += i[1]
-
-        # print results
-        print("\nTICKET REPORT: TICKETS SOLD FOR ALL ROUTES ON {}: {}\n".format(cal,count))
         print("Type `help` or `?` to return to main menu.\n")
 
 if __name__ == '__main__':

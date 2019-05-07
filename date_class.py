@@ -5,6 +5,22 @@
 from datetime import date, datetime
 import util
 
+def get_month():
+    month = input("Select a month (1-12): ")
+    if is_valid_month(month):
+        return month
+    else:
+        print("Please enter a valid month\n")
+        util._restartOrder()
+
+def get_date(month):
+    date = input("Select a date (1-31): ")
+    if is_valid_date(date,month):
+        return date
+    else:
+        print("Please enter a valid date\n")
+        util._restartOrder()
+
 def is_valid_month(month_request):
     requested_month = util.safe_int_conversion(month_request)
     current_month = date.today().month

@@ -4,22 +4,6 @@ import date_class as DC
 import ticket as Tix
 import buy_action as Buy
 
-def get_bus_route():
-    route = input("Select a route: Red, Green, or Blue: ")
-    if is_valid_route(route):
-        return route
-    else:
-        print("Please enter a valid bus route.\n")
-        util._restartOrder()
-
-def is_valid_route(route_request):
-    route_lower_case = route_request.lower()
-    valid_routes = ["red","green","blue"]
-    if route_lower_case in valid_routes:
-        return True
-    else:
-        return False
-
 def get_month():
     month = input("Select a month (1-12): ")
     if DC.is_valid_month(month):

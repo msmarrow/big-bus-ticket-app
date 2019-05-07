@@ -36,3 +36,19 @@ def get_max_capacity(route):
         return 4*89
     elif route.lower() == "red":
         return 5*89
+
+def get_bus_route():
+    route = input("Select a route: Red, Green, or Blue: ")
+    if is_valid_route(route):
+        return route
+    else:
+        print("Please enter a valid bus route.\n")
+        util._restartOrder()
+
+def is_valid_route(route_request):
+    route_lower_case = route_request.lower()
+    valid_routes = ["red","green","blue"]
+    if route_lower_case in valid_routes:
+        return True
+    else:
+        return False
