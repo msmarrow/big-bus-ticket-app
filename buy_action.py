@@ -1,4 +1,4 @@
-# File: buy_actio.py
+# File: buy_action.py
 # Author: Mahjeed Marrow
 # Description: handles ticket purchases
 
