@@ -47,18 +47,10 @@ class Shell(cmd.Cmd):
         month = Buy.get_month()
         date = Buy.get_date(month)
         number_of_tickets = Buy.get_ticket_count()
+        calendar_entry = DC.format_date(month,date)
 
-        #formatted_date = DC.format_date()
 
-        #formatted date
-        if len(month) == 1:
-            month = "0" + month
-
-        if len(date) == 1:
-            date = "0" + date
-
-        cal = "{}-{}-2019".format(month,date)
-        combo = [route.lower(),cal]
+        route_and_date_pair = [route.lower(),cal]
 
         for i in busdata:
             if i[0] == combo:

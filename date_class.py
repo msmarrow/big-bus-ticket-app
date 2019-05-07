@@ -1,23 +1,11 @@
 # File: date_class.py
 # Author: Mahjeed Marrow
-# Description: class representing date object
-# and functions that validate date input
+# Description: functions validating date input
+# and doing basic string formatting
 from datetime import date, datetime
 import util
 
-class Date():
-    '''string representation of a date object'''
-    def __init__(self,month,date,year):
-        self.month = month
-        self.date = date
-        self.year = year
 
-    def __repr__(self):
-        return (self.month, self.date, self.year)
-
-# -------------------------------
-# Begin Date validation functions
-# -------------------------------
 def is_valid_month(month_request):
     requested_month = util.safe_int_conversion(month_request)
     current_month = date.today().month
@@ -52,3 +40,12 @@ def is_valid_date(date_request, month, year=2019):
         return False
     else:
         return True
+
+def format_date(month, date, year=2019):
+    if len(month) == 1:
+        month = "0" + month
+
+    if len(date) == 1:
+        date = "0" + date
+
+    return "{}-{}-2019".format(month,date)
