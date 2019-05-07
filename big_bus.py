@@ -23,7 +23,6 @@ class Shell(cmd.Cmd):
         print("Note: Tickets may only be purchased up to 10 days in advance.\n")
         LO_PRICE = 10
         HI_PRICE = 15
-        count = 0
 
         bus_route = Buy.get_bus_route()
         month = Buy.get_month()
@@ -37,22 +36,9 @@ class Shell(cmd.Cmd):
         print("Type `help` or `?` to return to main menu.\n")
 
     def do_refund_ticket(self, args):
-        ticket_id = Rfnd.get_ticket_id()
+        ticket_id = Tix.get_ticket_id()
         Rfnd.issue_refund(ticket_id, bus_data, tickets_purchased)
 
-
-        count = 0
-        for i in tix:
-            if int(id) == i.id:
-                count += 1
-                tix.remove(i)
-                print(tix)
-                print("Refund Successful. Type `help` or `?` to return to main menu.\n")
-
-        if count == 0:
-            print("ID Not Found. Type `help` or `?` to return to main menu.\n")
-
-    #bus report
     def do_bus_report(self, args):
         count = 0
         today = datetime.today().strftime('%m-%d-%Y')
@@ -69,7 +55,6 @@ class Shell(cmd.Cmd):
 
     #ticket report
     def do_ticket_report(self, args):
-        count = 0
         month = input("Select a month (1-12): ")
         date  = input("Select a date (1-31): ")
 
@@ -91,6 +76,4 @@ class Shell(cmd.Cmd):
         print("Type `help` or `?` to return to main menu.\n")
 
 if __name__ == '__main__':
-    #contains data
-
     Shell().cmdloop()

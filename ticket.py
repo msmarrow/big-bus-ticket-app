@@ -5,6 +5,7 @@
 import date_class as DC
 import ticket as Tix
 import routes as Rts
+import util
 
 class Ticket():
     def __init__(self,date,route,id,price):
@@ -74,3 +75,7 @@ def get_ticket_prices(date, number_of_tickets):
             return HIGH_PRICE
         else:
             return LOW_PRICE
+
+def get_ticket_id():
+    ticket_id = input("Enter ID of ticket you would like to refund: ")
+    return util.safe_int_conversion(ticket_id)
