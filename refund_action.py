@@ -6,5 +6,4 @@ import ticket as Tix
 import util
 
 def issue_refund(ticket_id, route_ledger, ticket_records):
-    updated_records = Tix.remove_ticket_from_records(ticket_id, ticket_records, route_ledger)
-    return updated_records
+    return Tix.remove_ticket_from_records(ticket_id, ticket_records, route_ledger)
