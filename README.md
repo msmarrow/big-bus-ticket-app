@@ -9,3 +9,5 @@ The application supports the following functionalities:
 * Issue refunds for future tickets
 * Generate report of the number of tickets sold today for a given route
 * Generate report of the total number of tickets sold on any given date (for all routes)
+
+Usage: Run the app with `python3 big_bus.py`
